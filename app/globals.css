@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-border: var(--border);
+  --color-border-accent: var(--border-accent);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-green-1: var(--green-1);
+  --color-green-2: var(--green-2);
+  --color-green-3: var(--green-3);
+  --color-green-4: var(--green-4);
+  --color-accent-green: var(--accent-green);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-blue: var(--accent-blue);
+  --color-snake-green: var(--snake-green);
+  --color-snake-head: var(--snake-head);
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-primary:      #0d1117;
+    --bg-secondary:    #161b22;
+    --bg-tertiary:     #21262d;
+    --border:          #30363d;
+    --border-accent:   #388bfd;
+    --text-primary:    #e6edf3;
+    --text-secondary:  #7d8590;
+    --green-1:         #0e4429;
+    --green-2:         #006d32;
+    --green-3:         #26a641;
+    --green-4:         #39d353;
+    --accent-green:    #3fb950;
+    --accent-orange:   #f78166;
+    --accent-blue:     #58a6ff;
+    --snake-green:     #39d353;
+    --snake-head:      #f0f6fc;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+  }
+}
