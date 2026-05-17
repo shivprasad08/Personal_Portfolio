@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Code, Menu, X, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { GITHUB_USERNAME } from "@/config/github";
 
 export default function Navbar() {
@@ -45,7 +45,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center">
             <ul className="flex items-center gap-6 text-sm font-medium">
               {navLinks.map((link) => (
                 <li key={link.name}>
@@ -55,20 +55,6 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <div className="w-px h-5 bg-[#30363d]"></div>
-            <div className="flex items-center gap-4">
-              <a
-                href={`https://github.com/${GITHUB_USERNAME}`}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#e6edf3] hover:text-[#7d8590] transition-colors"
-              >
-                <Code size={20} />
-              </a>
-              <button className="text-[#e6edf3] hover:text-[#7d8590] transition-colors" suppressHydrationWarning>
-                <Moon size={20} />
-              </button>
-            </div>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -99,16 +85,6 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
-            <li className="pt-4 flex items-center gap-4">
-              <a
-                href={`https://github.com/${GITHUB_USERNAME}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-sm text-[#e6edf3]"
-              >
-                <Code size={18} /> GitHub Profile
-              </a>
-            </li>
           </ul>
         </div>
       )}
