@@ -131,15 +131,30 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  // Live stats from GitHub API
+  const [liveStats, setLiveStats] = useState({ commits: 344, streak: 4 });
+  useEffect(() => {
+    fetch("/api/github/stats")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.totalContributions === "number") {
+          setLiveStats({
+            commits: data.totalContributions,
+            streak: data.currentStreak || 0,
+          });
+        }
+      })
+      .catch((err) => console.error("Error fetching live hero stats:", err));
+  }, []);
+
   // Terminal code simulation typing delay
   const codeLines = [
     "const developer = {",
     '  name:     "Shivprasad",',
     '  role:     "Full Stack Dev",',
     '  location: "Pimpri, MH 🇮🇳",',
-    '  stack:    ["MERN", "Next.js", "Python"],',
-    "  streak:   4,   // days 🔥",
-    "  commits:  344,  // and counting",
+    `  streak:   ${liveStats.streak},   // days 🔥`,
+    `  commits:  ${liveStats.commits},  // and counting`,
     "  openTo:   true,  // hire me!",
     "};",
     "",
@@ -201,41 +216,25 @@ export default function Hero() {
         return (
           <>
             {"  "}
-            <span className="text-[#79c0ff]">stack</span>
-            <span className="text-[#e6edf3]">:</span>{"    "}{" "}
-            <span className="text-[#e6edf3]">[</span>
-            <span className="text-[#a5d6ff]">"MERN"</span>
-            <span className="text-[#e6edf3]">,</span>{" "}
-            <span className="text-[#a5d6ff]">"Next.js"</span>
-            <span className="text-[#e6edf3]">,</span>{" "}
-            <span className="text-[#a5d6ff]">"Python"</span>
-            <span className="text-[#e6edf3]">]</span>
-            <span className="text-[#e6edf3]">,</span>
+            <span className="text-[#79c0ff]">streak</span>
+            <span className="text-[#e6edf3]">:</span>{"   "}{" "}
+            <span className="text-[#f2cc60]">{liveStats.streak}</span>
+            <span className="text-[#e6edf3]">,</span>{"   "}{" "}
+            <span className="text-[#484f58]">// days 🔥</span>
           </>
         );
       case 5:
         return (
           <>
             {"  "}
-            <span className="text-[#79c0ff]">streak</span>
-            <span className="text-[#e6edf3]">:</span>{"   "}{" "}
-            <span className="text-[#f2cc60]">4</span>
-            <span className="text-[#e6edf3]">,</span>{"   "}{" "}
-            <span className="text-[#484f58]">// days 🔥</span>
-          </>
-        );
-      case 6:
-        return (
-          <>
-            {"  "}
             <span className="text-[#79c0ff]">commits</span>
             <span className="text-[#e6edf3]">:</span>{"  "}{" "}
-            <span className="text-[#f2cc60]">344</span>
+            <span className="text-[#f2cc60]">{liveStats.commits}</span>
             <span className="text-[#e6edf3]">,</span>{"  "}{" "}
             <span className="text-[#484f58]">// and counting</span>
           </>
         );
-      case 7:
+      case 6:
         return (
           <>
             {"  "}
@@ -246,11 +245,11 @@ export default function Hero() {
             <span className="text-[#484f58]">// hire me!</span>
           </>
         );
-      case 8:
+      case 7:
         return <span className="text-[#e6edf3]">{`};`}</span>;
-      case 9:
+      case 8:
         return <span className="text-[#484f58]"></span>;
-      case 10:
+      case 9:
         return (
           <>
             <span className="text-[#ff7b72]">export default</span>{" "}
