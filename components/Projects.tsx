@@ -71,7 +71,7 @@ export default function Projects() {
   const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
-    <section id="projects" className="scroll-mt-24">
+    <section id="projects" aria-label="Projects" className="scroll-mt-24">
       <div className="flex justify-between items-end mb-6 border-b border-[#30363d] pb-2 select-none">
         <h2 className="text-2xl font-normal text-[#e6edf3]">Projects</h2>
         <a href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`} target="_blank" rel="noreferrer" className="text-sm text-[#58a6ff] hover:underline mb-1">

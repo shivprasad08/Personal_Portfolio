@@ -14,7 +14,7 @@ export default function Home() {
         <TechStack />
         <Projects />
         <Certificates />
-        <section>
+        <section id="activity" aria-label="GitHub Activity" className="scroll-mt-24">
           <ContributionGraph />
         </section>
       </div>

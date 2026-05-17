@@ -166,6 +166,7 @@ export default function Footer() {
   return (
     <section
       id="contact"
+      aria-label="Contact"
       className="relative overflow-hidden bg-gradient-to-b from-transparent to-[#0d1117] pt-20 mt-24 border-t border-[#21262d] shadow-[0_-1px_0_#30363d]"
     >
       {/* Background Canvas Particles */}

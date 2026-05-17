@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { MapPin, Mail } from "lucide-react";
 import { GITHUB_USERNAME } from "@/config/github";
 import StatsCard from "./StatsCard";
+import Image from "next/image";
 
 export default function About() {
   return (
-    <section id="about" className="scroll-mt-24">
+    <section id="about" aria-label="About Me" className="scroll-mt-24">
       <div className="grid md:grid-cols-3 gap-12">
         {/* Left Col - Image */}
         <div className="md:col-span-1">
@@ -18,10 +19,13 @@ export default function About() {
             className="relative"
           >
             <div className="aspect-square rounded-full overflow-hidden border-4 border-[#30363d] relative z-10 bg-[#161b22]">
-              <img 
+              <Image 
                 src={`https://github.com/${GITHUB_USERNAME}.png`} 
-                alt="Profile" 
+                alt="Shivprasad Mahind — Full Stack Developer" 
                 className="w-full h-full object-cover"
+                width={320}
+                height={320}
+                priority
               />
             </div>
             

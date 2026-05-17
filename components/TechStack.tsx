@@ -2,29 +2,31 @@
 
 import { motion } from "framer-motion";
 import { Cpu } from "lucide-react";
+import Image from "next/image";
 
 export default function TechStack() {
   const skills = [
-    { name: "C++", slug: "cplusplus", color: "00599C" },
-    { name: "Python", slug: "python", color: "3776AB" },
-    { name: "JavaScript", slug: "javascript", color: "F7DF1E" },
-    { name: "TypeScript", slug: "typescript", color: "3178C6" },
-    { name: "React", slug: "react", color: "61DAFB" },
-    { name: "Next.js", slug: "nextdotjs", color: "ffffff" },
-    { name: "Node.js", slug: "nodedotjs", color: "339933" },
-    { name: "Express", slug: "express", color: "ffffff" },
-    { name: "MongoDB", slug: "mongodb", color: "47A248" },
-    { name: "SQL", slug: "mysql", color: "4479A1" },
-    { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
-    { name: "Git", slug: "git", color: "F05032" },
-    { name: "Docker", slug: "docker", color: "2496ED" },
-    { name: "AWS", slug: "amazonwebservices", color: "FF9900" },
-    { name: "LangChain", slug: "langchain", color: "13B58E" },
+    { name: "C++", slug: "C++ (CPlusPlus)", color: "00599C" },
+    { name: "Python", slug: "Python", color: "3776AB" },
+    { name: "JavaScript", slug: "JavaScript", color: "F7DF1E" },
+    { name: "TypeScript", slug: "TypeScript", color: "3178C6" },
+    { name: "React", slug: "React", color: "61DAFB" },
+    { name: "Next.js", slug: "nextjs-icon-svgrepo-com", color: "ffffff" },
+    { name: "Node.js", slug: "Node.js", color: "339933" },
+    { name: "Express", slug: "express-js", color: "ffffff" },
+    { name: "MongoDB", slug: "MongoDB", color: "47A248" },
+    { name: "SQL", slug: "MySQL", color: "4479A1" },
+    { name: "PostgreSQL", slug: "PostgresSQL", color: "4169E1" },
+    { name: "Tailwind CSS", slug: "Tailwind CSS", color: "06B6D4" },
+    { name: "Git", slug: "Git", color: "F05032" },
+    { name: "Docker", slug: "Docker", color: "2496ED" },
+    { name: "AWS", slug: "AWS", color: "FF9900" },
+    { name: "LangChain", slug: "Langchain--Streamline-Simple-Icons", color: "13B58E" },
     { name: "RAG", slug: "rag", color: "39d353" }
   ];
 
   return (
-    <section id="techstack" className="scroll-mt-24">
+    <section id="tech" aria-label="Tech Stack" className="scroll-mt-24">
       <div className="flex items-center gap-2 mb-8 border-b border-[#30363d] pb-2">
         <Cpu size={24} className="text-[#e6edf3]" />
         <h2 className="text-2xl font-normal text-[#e6edf3]">Tech Stack</h2>
@@ -51,10 +53,17 @@ export default function TechStack() {
                   <line x1="12" y1="9.5" x2="12" y2="11.5" />
                 </svg>
               ) : (
-                <img
-                  src={`https://cdn.simpleicons.org/${skill.slug}/${skill.color}`}
+                <Image
+                  src={`/icons/tech/${skill.slug}.svg`}
                   alt={`${skill.name} icon`}
-                  className="w-8 h-8 object-contain transition-transform group-hover:scale-110 duration-300 select-none pointer-events-none"
+                  width={32}
+                  height={32}
+                  unoptimized
+                  className={`w-8 h-8 object-contain transition-transform group-hover:scale-110 duration-300 select-none pointer-events-none ${
+                    ["nextjs-icon-svgrepo-com", "express-js", "Langchain--Streamline-Simple-Icons"].includes(skill.slug)
+                      ? "invert brightness-200"
+                      : ""
+                  }`}
                 />
               )}
             </div>

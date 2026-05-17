@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, ShieldCheck, X, Eye, Image as ImageIcon } from "lucide-react";
 import { certificates, Certificate } from "@/data/certificates";
+import Image from "next/image";
 
 export default function Certificates() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
@@ -18,7 +19,7 @@ export default function Certificates() {
   };
 
   return (
-    <section id="certificates" className="scroll-mt-24">
+    <section id="certificates" aria-label="Certifications" className="scroll-mt-24">
       <div className="flex items-center gap-2 mb-6 border-b border-[#30363d] pb-2">
         <Award size={24} className="text-[#e6edf3]" />
         <h2 className="text-2xl font-normal text-[#e6edf3]">Certifications</h2>
@@ -160,10 +161,12 @@ export default function Certificates() {
                 ) : (
                   /* High-fidelity Image rendering */
                   <div className="relative w-full h-full flex items-center justify-center">
-                    <img
+                    <Image
                       src={selectedCert.imagePath}
                       alt={`${selectedCert.name} credential`}
                       onError={() => setImageError(true)}
+                      width={800}
+                      height={500}
                       className="max-w-full max-h-[70vh] object-contain rounded-lg border border-[#30363d] shadow-md select-none pointer-events-none"
                     />
                   </div>

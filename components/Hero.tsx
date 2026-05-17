@@ -285,7 +285,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-[#0d1117]">
+    <section id="hero" aria-label="Introduction" className="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-[#0d1117]">
       {/* Canvas Particle Overlay */}
       <canvas
         ref={canvasRef}
