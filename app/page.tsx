@@ -15,7 +15,6 @@ export default function Home() {
         <Projects />
         <Certificates />
         <section>
-          <h2 className="text-2xl font-normal text-[#e6edf3] mb-6">Activity</h2>
           <ContributionGraph />
         </section>
       </div>
