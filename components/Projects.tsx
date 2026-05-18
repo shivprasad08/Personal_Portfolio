@@ -10,6 +10,13 @@ export default function Projects() {
 
   const projects = [
     {
+      name: "codeContext",
+      description: "AI-driven CLI coding agent built with LangGraph that optimizes token usage through AST-based chunking, local sentence-transformer embeddings, and directed NetworkX dependency graph traversal.",
+      language: "Python",
+      langColor: "#3572A5",
+      topics: ["python", "langgraph", "rag", "chromadb", "networkx", "cli"]
+    },
+    {
       name: "medical-graph-rag",
       description: "Advanced medical knowledge graph RAG platform utilizing Neo4j and LLMs to provide clinical context-aware answers to complex medical questions.",
       language: "Python",
