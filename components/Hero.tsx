@@ -16,12 +16,17 @@ export default function Hero() {
 
       {/* Canvas-only pixel hero — text rendered inside the canvas */}
 
+      {/* Typewriter — positioned just below the canvas name */}
+      <div className="absolute top-[56%] sm:top-[60%] md:top-[63%] left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
+        <HeroTypewriter />
+      </div>
+
       {/* Buttons with Micro-Interactions positioned near the very bottom */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="absolute bottom-[52px] left-1/2 -translate-x-1/2 z-10 flex flex-wrap items-center justify-center gap-6 select-none bg-black/40 backdrop-blur-md p-4 rounded-xl border border-[#30363d]/50 shadow-lg max-w-xl mx-4"
+        className="md:absolute md:bottom-[52px] md:left-1/2 md:-translate-x-1/2 md:z-10 flex w-full md:w-auto flex-wrap items-center justify-center gap-4 select-none bg-black/40 backdrop-blur-md p-4 rounded-xl border border-[#30363d]/50 shadow-lg max-w-xl mx-4"
       >
         <a
           href="#projects"
@@ -48,10 +53,7 @@ export default function Hero() {
         </a>
       </motion.div>
 
-      {/* Typewriter — positioned just below the canvas name */}
-      <div className="absolute top-[62%] md:top-[63%] left-1/2 -translate-x-1/2 z-10 pointer-events-none select-none">
-        <HeroTypewriter />
-      </div>
+      
     </section>
   );
 }

@@ -21,7 +21,7 @@ export default function About() {
           >
             <div className="aspect-square rounded-full overflow-hidden border-4 border-[#30363d] relative z-10 bg-[#0d1117]">
               <Image 
-                src={getLinkedInImage() || `https://github.com/${GITHUB_USERNAME}.png`} 
+                src={getLinkedInImage() || "/Shiv_Mahind.png"} 
                 alt="Shivprasad Mahind — Profile" 
                 className="w-full h-full object-cover"
                 width={320}
