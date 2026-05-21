@@ -39,7 +39,7 @@ export default function Certificates() {
               viewport={{ once: true }}
               transition={{ delay: (i % 4) * 0.05, duration: 0.2 }}
               whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(57, 211, 83, 0.1)" }}
-              className="p-5 bg-[#161b22] border border-[#30363d] rounded-xl hover:border-[#39d353] transition-all group flex flex-col h-full relative overflow-hidden"
+              className="p-5 bg-[#0d1117] border border-[#30363d] rounded-xl hover:border-[#39d353] transition-all group flex flex-col h-full relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#39d353]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               
@@ -114,7 +114,7 @@ export default function Certificates() {
               className="relative w-full max-w-4xl bg-[#0d1117] border border-[#30363d] rounded-2xl overflow-hidden shadow-2xl z-10 flex flex-col h-[85vh]"
             >
               {/* Header Panel */}
-              <div className="flex justify-between items-center px-6 py-4 border-b border-[#30363d] bg-[#161b22] select-none">
+              <div className="flex justify-between items-center px-6 py-4 border-b border-[#30363d] bg-[#0d1117] select-none">
                 <div>
                   <h3 className="font-bold text-base text-[#e6edf3] pr-4 line-clamp-1 leading-snug">
                     {selectedCert.name}
@@ -145,7 +145,7 @@ export default function Certificates() {
                     <p className="text-xs text-[#8b949e] leading-relaxed mb-4">
                       Please upload your certificate file/asset to the following path in your project folder:
                     </p>
-                    <code className="px-3 py-2 bg-[#161b22] border border-[#30363d] rounded-md text-[11px] text-[#58a6ff] break-all font-mono">
+                    <code className="px-3 py-2 bg-black border border-[#30363d] rounded-md text-[11px] text-[#58a6ff] break-all font-mono">
                       public{selectedCert.imagePath}
                     </code>
                   </div>
@@ -155,7 +155,7 @@ export default function Certificates() {
                     <iframe
                       src={selectedCert.imagePath}
                       title={`${selectedCert.name} credential`}
-                      className="w-full h-full rounded-lg border border-[#30363d] shadow-md bg-[#161b22] overflow-hidden"
+                      className="w-full h-full rounded-lg border border-[#30363d] shadow-md bg-black overflow-hidden"
                     />
                   </div>
                 ) : (

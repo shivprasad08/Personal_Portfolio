@@ -11,8 +11,8 @@ export default function StatsCard() {
     refreshInterval: 300000, // 5 min
   });
 
-  if (isLoading) return <div className="animate-pulse bg-[#161b22] h-48 rounded-xl border border-[#30363d]"></div>;
-  if (error) return <div className="bg-[#161b22] h-48 rounded-xl border border-[#30363d] flex items-center justify-center text-red-400">Failed to load stats</div>;
+  if (isLoading) return <div className="animate-pulse bg-[#0d1117] h-48 rounded-xl border border-[#30363d]"></div>;
+  if (error) return <div className="bg-[#0d1117] h-48 rounded-xl border border-[#30363d] flex items-center justify-center text-red-400">Failed to load stats</div>;
 
   const stats = data || {
     totalContributions: 328,
@@ -24,7 +24,7 @@ export default function StatsCard() {
   };
 
   return (
-    <div className="bg-[#161b22] rounded-xl border border-[#30363d] p-6 shadow-sm relative">
+    <div className="bg-[#0d1117] rounded-xl border border-[#30363d] p-6 shadow-sm relative">
       <button 
         onClick={() => mutate()} 
         className="absolute top-4 right-4 text-[#7d8590] hover:text-[#e6edf3] transition-colors"

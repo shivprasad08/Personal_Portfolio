@@ -24,14 +24,51 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             normalizeWheel: true,
           } as any
         });
+
+        // Expose globally for other components to access if needed (like custom back-to-top buttons)
+        (window as any).locomotiveScroll = scrollInstance;
       } catch (error) {
         console.error("Failed to initialize Locomotive Scroll:", error);
       }
     };
 
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        const targetId = href;
+        if (targetId === "#") {
+          e.preventDefault();
+          if (scrollInstance) {
+            scrollInstance.scrollTo(0, { duration: 1.2 });
+          } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        } else {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            if (scrollInstance) {
+              scrollInstance.scrollTo(targetElement, {
+                offset: -96, // Accounts for scroll-mt-24 and navbar height
+                duration: 1.2,
+              });
+            } else {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }
+      }
+    };
+
     initLocomotive();
+    document.addEventListener("click", handleAnchorClick);
 
     return () => {
+      document.removeEventListener("click", handleAnchorClick);
       if (scrollInstance) {
         scrollInstance.destroy();
       }
@@ -40,3 +77,4 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   return <>{children}</>;
 }
+

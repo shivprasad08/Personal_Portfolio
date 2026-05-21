@@ -215,10 +215,10 @@ export default function ContributionActivity({ year }: ContributionActivityProps
       <div className="w-full mt-10">
         <h2 className="text-xl font-semibold text-[#e6edf3] mb-6">Contribution activity</h2>
         <div className="animate-pulse space-y-6">
-          <div className="h-6 w-32 bg-[#161b22] rounded-md"></div>
+          <div className="h-6 w-32 bg-[#0d1117] rounded-md"></div>
           <div className="border-l border-[#30363d] ml-[15px] pl-[30px] space-y-4">
-            <div className="h-16 bg-[#161b22] rounded-xl"></div>
-            <div className="h-24 bg-[#161b22] rounded-xl"></div>
+            <div className="h-16 bg-[#0d1117] rounded-xl"></div>
+            <div className="h-24 bg-[#0d1117] rounded-xl"></div>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ export default function Navbar() {
     <nav
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#161b22]/80 backdrop-blur-md border-b border-[#30363d]"
+          ? "bg-[#0d1117]/80 backdrop-blur-md border-b border-[#30363d]"
           : "bg-transparent border-b border-transparent"
       }`}
     >
@@ -72,7 +72,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#161b22] border-b border-[#30363d] absolute top-16 left-0 w-full shadow-lg">
+        <div className="md:hidden bg-[#0d1117] border-b border-[#30363d] absolute top-16 left-0 w-full shadow-lg">
           <ul className="flex flex-col py-4 px-4">
             {navLinks.map((link) => (
               <li key={link.name}>

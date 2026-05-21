@@ -19,7 +19,7 @@ export default function SnakeGame() {
         </button>
       </div>
       
-      <div className="h-32 bg-[#161b22] border border-[#30363d] rounded-lg flex flex-col items-center justify-center text-[#7d8590]">
+      <div className="h-32 bg-black border border-[#30363d] rounded-lg flex flex-col items-center justify-center text-[#7d8590]">
         {isPlaying ? (
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-[#39d353] animate-pulse rounded-sm"></div>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Mail } from "lucide-react";
 import { GITHUB_USERNAME } from "@/config/github";
+import { getLinkedInImage, LINKEDIN_PROFILE } from "@/config/social";
 import StatsCard from "./StatsCard";
 import Image from "next/image";
 
@@ -18,10 +19,10 @@ export default function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="aspect-square rounded-full overflow-hidden border-4 border-[#30363d] relative z-10 bg-[#161b22]">
+            <div className="aspect-square rounded-full overflow-hidden border-4 border-[#30363d] relative z-10 bg-[#0d1117]">
               <Image 
-                src={`https://github.com/${GITHUB_USERNAME}.png`} 
-                alt="Shivprasad Mahind — Full Stack Developer" 
+                src={getLinkedInImage() || `https://github.com/${GITHUB_USERNAME}.png`} 
+                alt="Shivprasad Mahind — Profile" 
                 className="w-full h-full object-cover"
                 width={320}
                 height={320}
@@ -75,7 +76,7 @@ export default function About() {
                 </svg>
               </a>
               <a 
-                href="https://www.linkedin.com/in/shivprasad-mahind08/" 
+                href={LINKEDIN_PROFILE} 
                 target="_blank" 
                 rel="noreferrer" 
                 title="LinkedIn"

@@ -70,7 +70,7 @@ export default function ContributionGraph() {
               className={`px-3 py-1 text-xs font-mono rounded-md border transition-all cursor-pointer ${
                 year === y
                   ? "bg-[#21262d] border-[#3fb950] text-[#39d353] shadow-[0_0_12px_rgba(57,211,83,0.15)] font-semibold"
-                  : "bg-[#161b22] border-[#30363d] text-[#7d8590] hover:text-[#e6edf3] hover:border-[#8b949e]"
+                  : "bg-[#0d1117] border-[#30363d] text-[#7d8590] hover:text-[#e6edf3] hover:border-[#8b949e]"
               }`}
               suppressHydrationWarning
             >
@@ -90,7 +90,7 @@ export default function ContributionGraph() {
 
         <div className="overflow-x-auto pb-4 custom-scrollbar">
           {isLoading ? (
-            <div className="animate-pulse h-[120px] bg-[#161b22] rounded-md"></div>
+            <div className="animate-pulse h-[120px] bg-[#0d1117] rounded-md"></div>
           ) : error ? (
             <div className="text-red-400 text-sm py-8 text-center">Failed to load contributions</div>
           ) : (

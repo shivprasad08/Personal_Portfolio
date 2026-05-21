@@ -140,7 +140,13 @@ export default function Footer() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if ((window as any).locomotiveScroll) {
+      (window as any).locomotiveScroll.scrollTo(0, {
+        duration: 1.2,
+      });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   // Framer Motion entry animations
@@ -167,7 +173,7 @@ export default function Footer() {
     <section
       id="contact"
       aria-label="Contact"
-      className="relative overflow-hidden bg-gradient-to-b from-transparent to-[#0d1117] pt-20 mt-24 border-t border-[#21262d] shadow-[0_-1px_0_#30363d]"
+      className="relative overflow-hidden bg-gradient-to-b from-transparent to-black pt-20 mt-24 border-t border-[#21262d] shadow-[0_-1px_0_#30363d]"
     >
       {/* Background Canvas Particles */}
       <canvas
@@ -303,7 +309,7 @@ export default function Footer() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] as any }}
           whileHover={{ rotateY: 0, rotateX: 0 }}
-          className="bg-[#161b22] border border-[#30363d] rounded-xl overflow-hidden shadow-[0_0_0_1px_#21262d,0_24px_48px_rgba(0,0,0,0.4),0_0_60px_rgba(63,185,80,0.04)] transition-transform duration-500 ease-out select-none perspective-[1000px]"
+          className="bg-[#0d1117] border border-[#30363d] rounded-xl overflow-hidden shadow-[0_0_0_1px_#21262d,0_24px_48px_rgba(0,0,0,0.4),0_0_60px_rgba(63,185,80,0.04)] transition-transform duration-500 ease-out select-none perspective-[1000px]"
         >
           {/* Title Bar chrome */}
           <div className="bg-[#1c2128] border-bottom border-[#30363d] p-[10px_14px] flex items-center gap-3">

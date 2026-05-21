@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "github.com" },
       { protocol: "https", hostname: "cdn.simpleicons.org" },
+      { protocol: "https", hostname: "media-exp1.licdn.com" },
+      { protocol: "https", hostname: "media.licdn.com" },
     ],
   },
   compress: true,

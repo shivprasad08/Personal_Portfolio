@@ -27,9 +27,9 @@
 
 @layer base {
   :root {
-    --bg-primary:      #0d1117;
-    --bg-secondary:    #161b22;
-    --bg-tertiary:     #21262d;
+    --bg-primary:      #000000;
+    --bg-secondary:    #0d1117;
+    --bg-tertiary:     #161b22;
     --border:          #30363d;
     --border-accent:   #388bfd;
     --text-primary:    #e6edf3;
@@ -51,3 +51,13 @@
     font-family: var(--font-sans);
   }
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
