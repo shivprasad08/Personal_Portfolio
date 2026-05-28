@@ -33,10 +33,7 @@ export default function About() {
             {/* Active Status Ring */}
             <div className="absolute inset-0 rounded-full border-2 border-[#39d353] scale-105 opacity-50 z-0"></div>
             
-            {/* Scan line effect */}
-            <div className="absolute inset-0 rounded-full overflow-hidden z-20 pointer-events-none">
-              <div className="w-full h-1 bg-[#58a6ff] opacity-50 animate-[scan_3s_ease-in-out_infinite]"></div>
-            </div>
+            {/* Scan line effect removed */}
           </motion.div>
         </div>
 
@@ -119,12 +116,7 @@ export default function About() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes scan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(500%); }
-        }
-      `}</style>
+      {/* scan keyframes removed */}
     </section>
   );
 }
