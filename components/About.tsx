@@ -53,10 +53,20 @@ export default function About() {
               <span>Pimpri, Maharashtra</span>
             </div>
 
+            <p className="text-[#e6edf3] leading-relaxed text-lg mb-4">
+              I am a Final-year Computer Engineering student at PCCOE, actively seeking full-time AI and software engineering roles.
+            </p>
+
+            <p className="text-[#e6edf3] leading-relaxed text-lg mb-4">
+              My journey spans building AI-powered systems and full-stack applications, competing in hackathons, and contributing to open source projects. I work across the entire stack — from backend APIs and modern frontends to LLM integrations and RAG pipelines — and I thrive in environments where I can solve complex problems and ship fast.
+            </p>
+
+            <p className="text-[#e6edf3] leading-relaxed text-lg mb-4">
+              Beyond writing code, I've co-authored a deep learning research paper on medical image classification and contributed to open source repositories with merged PRs. Whether working independently on a critical problem or collaborating in a fast-paced hackathon environment, I bring a calm, methodical approach to building impactful solutions.
+            </p>
+
             <p className="text-[#e6edf3] leading-relaxed text-lg mb-8">
-              I am a passionate Full Stack Developer with experience in building dynamic, user-centric web applications. 
-              My expertise spans the MERN stack and modern frameworks like Next.js. I thrive in environments where I can 
-              solve complex problems, optimize performance, and deliver beautiful, functional digital products.
+              I'm drawn to the intersection of AI and engineering — where cutting-edge models meet production systems. Currently exploring the AI/ML domain and open source. Let's connect!
             </p>
 
             <div className="mb-8">
