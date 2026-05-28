@@ -10,6 +10,33 @@ const PADDLE_COLOR = "#238636"    // darker green paddles
 const LETTER_SPACING = 1
 const WORD_SPACING = 3
 
+const getHeroLayout = (width: number, height: number) => {
+  if (width < 640) {
+    return {
+      nameWidthRatio: 0.88,
+      maxPixelSize: 4.4,
+      textStartY: height * 0.22,
+      bottomPaddleY: height * 0.64,
+    }
+  }
+
+  if (width < 1024) {
+    return {
+      nameWidthRatio: 0.9,
+      maxPixelSize: 6.5,
+      textStartY: height * 0.28,
+      bottomPaddleY: height * 0.72,
+    }
+  }
+
+  return {
+    nameWidthRatio: 0.85,
+    maxPixelSize: Number.POSITIVE_INFINITY,
+    textStartY: null,
+    bottomPaddleY: null,
+  }
+}
+
 const PIXEL_MAP = {
   P: [
     [1, 1, 1, 1],
@@ -213,12 +240,9 @@ export function HeroPongAnimation() {
 
       // Pixel sizes — large for name, small for greeting
       const LARGE_PIXEL_SIZE = 8 * scale
-      const SMALL_PIXEL_SIZE = 4 * scale
       const BALL_SPEED = 6 * scale
 
       pixelsRef.current = []
-
-      const words = ["HI I AM", "SHIVPRASAD MAHIND"]
 
       const calcWordWidth = (word: string, pixelSize: number): number => {
         return (
@@ -238,14 +262,15 @@ export function HeroPongAnimation() {
 
       // Scale each line independently so name stays large, greeting stays visible
       const nameRaw = calcLineWidth("SHIVPRASAD MAHIND", LARGE_PIXEL_SIZE)
-      const greetRaw = calcLineWidth("HI I AM", SMALL_PIXEL_SIZE)
 
       // Name drives the scale — fit it to 85% of canvas width
-      const nameScale = (canvas.width * 0.85) / nameRaw
-      const adjustedLarge = LARGE_PIXEL_SIZE * nameScale
+      const layout = getHeroLayout(canvas.width, canvas.height)
+      const nameScale = (canvas.width * layout.nameWidthRatio) / nameRaw
+      const cappedNameScale = Math.min(nameScale, layout.maxPixelSize / LARGE_PIXEL_SIZE)
+      const adjustedLarge = LARGE_PIXEL_SIZE * cappedNameScale
 
       // Greeting uses same size as the adjusted large name
-      const adjustedSmall = adjustedLarge
+      const adjustedSmall = adjustedLarge * 0.45
 
       // Recalculate widths with adjusted sizes
       const nameWidth = calcLineWidth("SHIVPRASAD MAHIND", adjustedLarge)
@@ -259,7 +284,7 @@ export function HeroPongAnimation() {
       const totalHeight = greetHeight + gap + nameHeight
 
       // Start Y — vertically centered, shifted slightly upward
-      let currentY = (canvas.height - totalHeight) / 2 - adjustedLarge * 0.5
+      let currentY = layout.textStartY ?? (canvas.height - totalHeight) / 2 - adjustedLarge * 0.5
 
       // Render "HI I AM"
       let startX = (canvas.width - greetWidth) / 2
@@ -356,7 +381,7 @@ export function HeroPongAnimation() {
         },
         {
           x: canvas.width / 2 - paddleLength / 2,
-          y: canvas.height - paddleWidth,
+          y: layout.bottomPaddleY ?? canvas.height - paddleWidth,
           width: paddleLength,
           height: paddleWidth,
           targetY: canvas.width / 2 - paddleLength / 2,
@@ -373,13 +398,14 @@ export function HeroPongAnimation() {
       // Asymmetrical bounds
       const insetX = 40 * scale
       const insetTop = 60 * scale
-      const insetBottom = 30 * scale
+      const bottomPaddle = paddles.find((paddle) => !paddle.isVertical && paddle.y > 0)
+      const playfieldBottom = bottomPaddle ? bottomPaddle.y + bottomPaddle.height : canvas.height - 30 * scale
 
       ball.x += ball.dx
       ball.y += ball.dy
 
       // Bounce ball off asymmetrical playfield inset boundaries
-      if (ball.y - ball.radius < insetTop || ball.y + ball.radius > canvas.height - insetBottom) {
+      if (ball.y - ball.radius < insetTop || ball.y + ball.radius > playfieldBottom) {
         ball.dy = -ball.dy
       }
       if (ball.x - ball.radius < insetX || ball.x + ball.radius > canvas.width - insetX) {
@@ -411,7 +437,7 @@ export function HeroPongAnimation() {
       paddles.forEach((paddle) => {
         if (paddle.isVertical) {
           paddle.targetY = ball.y - paddle.height / 2
-          paddle.targetY = Math.max(insetTop, Math.min(canvas.height - paddle.height - insetBottom, paddle.targetY))
+          paddle.targetY = Math.max(insetTop, Math.min(playfieldBottom - paddle.height, paddle.targetY))
           paddle.y += (paddle.targetY - paddle.y) * 0.1
         } else {
           paddle.targetY = ball.x - paddle.width / 2

@@ -7,7 +7,7 @@ import ContributionGraph from "@/components/ContributionGraph";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-16 pb-16">
+    <div className="flex flex-col gap-4 pb-16 md:gap-16">
       <Hero />
       <div className="container mx-auto px-4 lg:px-8 space-y-24">
         <About />

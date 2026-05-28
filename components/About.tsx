@@ -63,7 +63,7 @@ export default function About() {
               <StatsCard />
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex justify-center gap-4 md:justify-start">
               <a 
                 href={`https://github.com/${GITHUB_USERNAME}`} 
                 target="_blank" 
