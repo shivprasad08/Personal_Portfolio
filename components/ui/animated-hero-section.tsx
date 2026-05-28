@@ -13,10 +13,15 @@ const WORD_SPACING = 3
 const getHeroLayout = (width: number, height: number) => {
   if (width < 640) {
     return {
-      nameWidthRatio: 0.88,
-      maxPixelSize: 4.4,
-      textStartY: height * 0.22,
+      nameWidthRatio: 0.92,
+      maxPixelSize: 8.5,
+      textStartY: height * 0.18,
       bottomPaddleY: height * 0.64,
+      lines: [
+        { text: "HI I AM", size: "small" },
+        { text: "SHIVPRASAD", size: "large" },
+        { text: "MAHIND", size: "large" },
+      ],
     }
   }
 
@@ -26,6 +31,10 @@ const getHeroLayout = (width: number, height: number) => {
       maxPixelSize: 6.5,
       textStartY: height * 0.28,
       bottomPaddleY: height * 0.72,
+      lines: [
+        { text: "HI I AM", size: "small" },
+        { text: "SHIVPRASAD MAHIND", size: "large" },
+      ],
     }
   }
 
@@ -34,6 +43,10 @@ const getHeroLayout = (width: number, height: number) => {
     maxPixelSize: Number.POSITIVE_INFINITY,
     textStartY: null,
     bottomPaddleY: null,
+    lines: [
+      { text: "HI I AM", size: "small" },
+      { text: "SHIVPRASAD MAHIND", size: "large" },
+    ],
   }
 }
 

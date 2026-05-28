@@ -17,7 +17,7 @@ export default function Hero() {
       {/* Canvas-only pixel hero — text rendered inside the canvas */}
 
       {/* Typewriter — positioned just below the canvas name */}
-      <div className="absolute top-[32%] sm:top-[38%] md:top-[44%] lg:top-[63%] left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
+      <div className="absolute top-[40%] sm:top-[42%] md:top-[44%] lg:top-[63%] left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none">
         <HeroTypewriter />
       </div>
 
@@ -26,7 +26,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="absolute top-[48%] bottom-auto md:top-auto md:bottom-[100px] left-1/2 -translate-x-1/2 z-10 flex w-full flex-row flex-wrap items-center justify-center gap-2 px-4 select-none"
+        className="absolute top-[54%] bottom-auto md:top-auto md:bottom-[100px] left-1/2 -translate-x-1/2 z-10 flex w-full flex-row flex-wrap items-center justify-center gap-2 px-4 select-none"
       >
         <a
           href="#projects"
