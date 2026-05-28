@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 
 const ROLES = [
-  "Full Stack Developer",
-  "Problem Solver",
-  "AI/ML Enthusiast",
+  "a Full Stack Developer",
+  "a Problem Solver",
+  "an AI/ML Enthusiast",
+  "an Open Source Contributor",
 ]
 
 const TYPE_SPEED = 60
