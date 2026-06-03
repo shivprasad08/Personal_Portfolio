@@ -18,8 +18,10 @@
     "mongoose": "^9.6.2",
     "next": "16.2.6",
     "nodemailer": "^8.0.7",
+    "otpauth": "^9.5.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-qr-code": "^2.0.21",
     "react-tooltip": "^6.0.3",
     "swr": "^2.4.1"
   },

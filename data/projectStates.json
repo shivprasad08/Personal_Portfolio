@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "gs5odg",
+    "repoName": "CodeClauseInternship_House_Price_Prediction",
+    "status": "ignored",
+    "description": "",
+    "language": "Python",
+    "topics": [],
+    "updatedAt": 1780502129146
+  },
+  {
+    "_id": "pfalfa",
+    "repoName": "VoiceKhata",
+    "status": "approved",
+    "description": "A modern, AI-powered ledger (khata) system designed for Indian kirana stores, featuring a LLaMA 3 Business Advisor, real-time live feeds, and comprehensive GST and credit management.",
+    "language": "Python",
+    "topics": [
+      "react",
+      "fastapi",
+      "postgresql",
+      "sarvam ai",
+      "tailwind"
+    ],
+    "updatedAt": 1780504576508
+  },
+  {
+    "_id": "no7yy5l",
+    "repoName": "shivprasad08",
+    "status": "ignored",
+    "description": "Hello, this is my Profile.",
+    "language": "",
+    "topics": [],
+    "updatedAt": 1780503013236
+  }
+]

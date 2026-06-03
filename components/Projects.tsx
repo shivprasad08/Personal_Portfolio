@@ -5,7 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Book, Circle } from "lucide-react";
 import { GITHUB_USERNAME } from "@/config/github";
 
-export default function Projects() {
+interface ProjectData {
+  name: string;
+  description: string;
+  language: string;
+  langColor: string;
+  topics: string[];
+}
+
+export default function Projects({ dbProjects = [] }: { dbProjects?: ProjectData[] }) {
   const [showAll, setShowAll] = useState(false);
 
   const projects = [
@@ -75,7 +83,10 @@ export default function Projects() {
     }
   ];
 
-  const displayedProjects = showAll ? projects : projects.slice(0, 4);
+  // Merge database projects at the top
+  const allProjects = [...dbProjects, ...projects];
+
+  const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
 
   return (
     <section id="projects" aria-label="Projects" className="scroll-mt-24">
