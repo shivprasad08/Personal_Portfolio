@@ -10,6 +10,8 @@ import connectToDatabase from "@/lib/cache";
 import { ProjectState } from "@/models/ProjectState";
 import { getLocalProjects } from "@/lib/localDb";
 
+export const revalidate = 60;
+
 export default async function Home() {
   const conn = await connectToDatabase();
   let dbProjectsRaw: any[] = [];
