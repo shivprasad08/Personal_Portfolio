@@ -27,17 +27,29 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const year = parseInt(searchParams.get("year") || new Date().getFullYear().toString(), 10);
 
-  // Construct 12 monthly aliases in a single query
+  // Cap to today so we never pass future dates to GitHub's API
+  const now = new Date();
+  // A little buffer: treat "tomorrow midnight" as the hard ceiling
+  const ceilDate = new Date(now);
+  ceilDate.setDate(ceilDate.getDate() + 1);
+  const ceilStr = ceilDate.toISOString().split("T")[0] + "T00:00:00Z";
+
+  // Construct monthly aliases — skip months that haven't started yet
   let queryFields = "";
   for (let m = 1; m <= 12; m++) {
     const monthStr = m < 10 ? `0${m}` : `${m}`;
     const nextMonth = m === 12 ? 1 : m + 1;
     const nextYear = m === 12 ? year + 1 : year;
     const nextMonthStr = nextMonth < 10 ? `0${nextMonth}` : `${nextMonth}`;
-    
+
     const fromStr = `${year}-${monthStr}-01T00:00:00Z`;
-    const toStr = `${nextYear}-${nextMonthStr}-01T00:00:00Z`;
-    
+    // If the month hasn't started yet, skip it entirely
+    if (fromStr > ceilStr) continue;
+
+    // Cap toStr so we never request data beyond today
+    const rawToStr = `${nextYear}-${nextMonthStr}-01T00:00:00Z`;
+    const toStr = rawToStr > ceilStr ? ceilStr : rawToStr;
+
     queryFields += `
       m${m}: contributionsCollection(from: "${fromStr}", to: "${toStr}") {
         commitContributionsByRepository(maxRepositories: 50) {
@@ -127,17 +139,17 @@ export async function GET(request: Request) {
 
       const categories: any[] = [];
 
-      // 1. Commits Category
-      const commitRepos = monthData.commitContributionsByRepository || [];
+      // 1. Commits Category — filter out null repos (deleted repositories)
+      const commitRepos = (monthData.commitContributionsByRepository || []).filter((c: any) => c?.repository != null);
       if (commitRepos.length > 0) {
-        const totalCommits = commitRepos.reduce((acc: number, c: any) => acc + c.contributions.totalCount, 0);
+        const totalCommits = commitRepos.reduce((acc: number, c: any) => acc + (c.contributions?.totalCount || 0), 0);
         const totalReposCount = commitRepos.length;
-        
+
         categories.push({
           type: "commits",
           title: `Created ${totalCommits} commit${totalCommits === 1 ? '' : 's'} in ${totalReposCount} repositor${totalReposCount === 1 ? 'y' : 'ies'}`,
           repos: commitRepos.map((c: any) => {
-            const count = c.contributions.totalCount;
+            const count = c.contributions?.totalCount || 0;
             const ratio = totalCommits > 0 ? Math.round((count / totalCommits) * 100) : 0;
             return {
               name: c.repository.nameWithOwner,
@@ -149,8 +161,8 @@ export async function GET(request: Request) {
         });
       }
 
-      // 2. Repositories Created Category
-      const repoNodes = monthData.repositoryContributions?.nodes || [];
+      // 2. Repositories Created Category — filter null repos
+      const repoNodes = (monthData.repositoryContributions?.nodes || []).filter((r: any) => r?.repository != null);
       if (repoNodes.length > 0) {
         categories.push({
           type: "repos",
@@ -166,14 +178,14 @@ export async function GET(request: Request) {
         });
       }
 
-      // 3. Pull Requests Category
-      const prNodes = monthData.pullRequestContributions?.nodes || [];
+      // 3. Pull Requests Category — filter null pullRequest nodes
+      const prNodes = (monthData.pullRequestContributions?.nodes || []).filter((n: any) => n?.pullRequest != null && n.pullRequest?.repository != null);
       if (prNodes.length > 0) {
         // Highlight the latest PR
         const sortedPRs = [...prNodes].sort((a: any, b: any) => b.occurredAt.localeCompare(a.occurredAt));
         const highlightNode = sortedPRs[0];
         const highlightPR = highlightNode.pullRequest;
-        
+
         const prComments = highlightPR.comments?.totalCount || 0;
         categories.push({
           type: "pr_highlight",
@@ -195,7 +207,7 @@ export async function GET(request: Request) {
         // Group the remaining PRs as "other pull requests"
         if (sortedPRs.length > 1) {
           const others = sortedPRs.slice(1);
-          
+
           // Group by repository
           const reposGroup: Record<string, any> = {};
           others.forEach((o: any) => {
@@ -245,8 +257,10 @@ export async function GET(request: Request) {
         }
       }
 
-      // 4. Pull Request Reviews Category
-      const reviewNodes = monthData.pullRequestReviewContributions?.nodes || [];
+      // 4. Pull Request Reviews Category — filter null review nodes
+      const reviewNodes = (monthData.pullRequestReviewContributions?.nodes || []).filter(
+        (r: any) => r?.pullRequestReview != null && r.pullRequestReview?.repository != null
+      );
       if (reviewNodes.length > 0) {
         const sortedReviews = [...reviewNodes].sort((a: any, b: any) => b.occurredAt.localeCompare(a.occurredAt));
         const reposMap = new Map<string, number>();

@@ -25,6 +25,7 @@ async function connectToDatabase() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 5000, // fail fast instead of hanging
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
@@ -36,7 +37,9 @@ async function connectToDatabase() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    throw e;
+    // Log but don't throw — fall back to localDb gracefully
+    console.warn("MongoDB connection failed, falling back to local storage:", (e as Error).message);
+    return null;
   }
 
   return cached.conn;
