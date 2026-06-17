@@ -9,6 +9,13 @@ export interface Certificate {
 export const certificates: Certificate[] = [
   // Row 1
   {
+    id: "cs50x",
+    name: "CS50's Introduction to Computer Science",
+    issuer: "Harvard University (edX)",
+    date: "June 2026",
+    imagePath: "/certificates/CS50x.pdf"
+  },
+  {
     id: "dsa",
     name: "Mastering Data Structures & Algorithms using C and C++",
     issuer: "Udemy",
